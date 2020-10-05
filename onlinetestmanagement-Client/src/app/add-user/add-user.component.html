@@ -1,0 +1,35 @@
+<div class="container">
+    <br><br><br>
+    <h2><p>Add User</p></h2>
+    <form #myform=ngForm (ngSubmit)= "myform.valid && addUser(myform)" >
+        
+        
+    <label>User Name</label> &nbsp;
+    <input type="text" name= "username" ngModel #nameCtrl=ngModel required minlength="2"> 
+    <br>
+    <div *ngIf="nameCtrl.errors!==null && nameCtrl.errors.required" class="error">
+           name is required
+    </div>
+
+    <div *ngIf="nameCtrl.errors!==null && nameCtrl.errors.minlength" class="error">
+        min length is 2
+    </div>
+    <br>
+    
+    <label>Password</label> &nbsp;
+    <input type="text" name= "password" ngModel #passwordCtrl=ngModel required minlength="3"> 
+    <br>
+    <div *ngIf="passwordCtrl.errors!==null && passwordCtrl.errors.required" class="error">
+    password is required
+    </div>
+    <div *ngIf="passwordCtrl.errors!==null && passwordCtrl.errors.minlength" class="error">
+    min length is 3
+    </div>
+    <br>
+
+    <br>
+    <input type="submit" value="submit">
+    </form>
+
+    
+    </div>

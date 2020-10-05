@@ -1,0 +1,21 @@
+<div class="container">
+    <br>
+    <br><br><br><br><br><br><br>
+    <h2><p>Exam Details </p></h2>
+
+    <form #idform=ngForm (ngSubmit)=findExam(idform)>
+
+        <label>Exam Id</label>
+        <input type="number" name="examId" ngModel>
+
+        <input type="submit" value="Search">
+    </form>
+    <br>
+
+    <div *ngIf="exam!==undefined">
+        Exam Name is {{exam.examName }}
+        <br>
+        Exam  password is {{exam.Time}}
+    </div>
+    <br>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+    <br><br>
+    <h2><p>Assign Exam To User </p></h2>
+
+
+    <form #myform=ngForm (ngSubmit)= "myform.valid && assignExam(myform)" >
+        
+
+    <label>User Id</label> &nbsp;
+    <input type="number" name= "userId" ngModel #userIdCtrl=ngModel required minlength="1"> 
+    <br>
+    <div *ngIf="userIdCtrl.errors!==null && userIdCtrl.errors.required" class="error">
+    UserId is required
+    </div>
+    <div *ngIf="userIdCtrl.errors!==null && userIdCtrl.errors.minlength" class="error">
+    min length is 1
+    </div>
+    <br>
+
+
+    <label>Exam Id</label> &nbsp;
+        <input type="number" name= "examId" ngModel #examIdCtrl=ngModel required minlength="1"> 
+        <br>
+        <div *ngIf="examIdCtrl.errors!==null && examIdCtrl.errors.required" class="error">
+        Exam Id is required
+        </div>
+        <div *ngIf="examIdCtrl.errors!==null && examIdCtrl.errors.minlength" class="error">
+        min length is 1
+        </div>
+        <br>
+        
+
+
+        <input type="submit" value="submit">
+    </form>
+
+    <div *ngIf="user!=undefined && exam!=undefined">
+        Assigned exam to the user
+        <br>
+        user id is {{user.userId}}
+        <br>
+        exam id  is {{exam.examId}} 
+        <br>
+        </div>
+    </div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <br><br><br><br><br><br><br><br>
+    <h2><p>User Details </p></h2>
+
+
+    <form #idform=ngForm (ngSubmit)=findUser(idform)>
+
+        <label>User Id</label>
+        <input type="number" name="userid" ngModel>
+
+        <input type="submit" value="Search">
+    </form>
+    <br>
+
+    <div *ngIf="user!==undefined">
+        User Name is {{user.userName }}
+        <br>
+        User password is {{user.password}}
+    </div>
+    <br>
+</div>
