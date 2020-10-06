@@ -6,32 +6,39 @@ import { User } from '../model/user';
 import { OnlineTestManagement } from '../service/testService';
 
 @Component({
-  selector: 'assign-exam-to-user',
-  templateUrl: './assign-exam-to-user.component.html',
-  styleUrls: ['./assign-exam-to-user.component.css']
+  selector: 'edit-assign-exam',
+  templateUrl: './edit-assign-exam.component.html',
+  styleUrls: ['./edit-assign-exam.component.css']
 })
-export class AssignExamToUserComponent  {
+export class EditAssignExamComponent {
 
-  
   constructor(private onlinetest: OnlineTestManagement) {
   }
 
 
   userId:number;
   examId:number;
-  
+  marks:number;
+  assignId:number;
+
   user:User=undefined;
   exam:Exam=undefined;
   admin:Admin=undefined;
 
   
    
-assignExam(form:any){
+editExam(form:any){
   let data=form.value;
   this.userId = data.userId;
   this.examId = data.examId;
+  this.marks = data.marks;
+  this.assignId = data.assignId;
+
   
-  
+  this.user = new User(this.userId,null,null);
+  this.exam = new Exam(this.examId,null,null);
+  this.admin = new Admin(this.assignId,this.marks,null,null,this.user,this.exam);
+
   let successFun = (adminArg: Admin) => {
     this.admin = adminArg;
   };
@@ -40,14 +47,10 @@ assignExam(form:any){
     console.log("err in addusercomponent " + err.message);
   }
 
-  let observable: Observable<Admin> = this.onlinetest.getAssignExam(this.userId,this.examId);
+  let observable: Observable<Admin> = this.onlinetest.editAssignExam(this.admin);
   observable.subscribe(successFun, errFun);
 
 }
 
 
 }
-
-  
-
-

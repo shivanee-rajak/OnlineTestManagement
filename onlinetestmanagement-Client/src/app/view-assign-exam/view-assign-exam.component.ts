@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Exam } from '../model/exam';
+import { Admin } from '../model/Admin';
 import { OnlineTestManagement } from '../service/testService';
 
 @Component({
-  selector: 'exam-details',
-  templateUrl: './exam-details.component.html',
-  styleUrls: ['./exam-details.component.css']
+  selector: 'view-assign-exam',
+  templateUrl: './view-assign-exam.component.html',
+  styleUrls: ['./view-assign-exam.component.css']
 })
-export class ExamDetailsComponent  {
+export class ViewAssignExamComponent {
 
   constructor(private route:ActivatedRoute, private onlinetest:OnlineTestManagement) {
 
@@ -22,14 +22,15 @@ export class ExamDetailsComponent  {
     })
     }
  
-    exam:Exam;
+    admin:Admin;
  
  
     findExamById(id:number){
-     let observable:Observable<Exam>=this.onlinetest.getExam(id);
+      console.log(id+ " 2");
+     let observable:Observable<Admin>=this.onlinetest.viewAssignExam(id);
      observable.subscribe(
        userArg=>{
-         this.exam=userArg;
+         this.admin=userArg;
        },
  
        err=>{
@@ -39,12 +40,11 @@ export class ExamDetailsComponent  {
      );
     }
  
-   findExam(form:any){
+    findAssignedExam(form:any){
      let data=form.value;
-     let examId=data.examId;
-    this.findExamById(examId);
+     let id=data.id;
+     console.log(id+ " 1");
+    this.findExamById(id);
    }
-
-  
-
+ 
 }

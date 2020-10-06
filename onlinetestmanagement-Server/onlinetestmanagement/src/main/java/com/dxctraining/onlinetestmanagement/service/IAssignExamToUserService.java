@@ -4,7 +4,7 @@ import java.util.List;
 
 import java.util.Optional;
 
-import com.dxctraining.onlinetestmanagement.entities.AssignExamToUser;
+import com.dxctraining.onlinetestmanagement.entities.Admin;
 import com.dxctraining.onlinetestmanagement.entities.Exam;
 import com.dxctraining.onlinetestmanagement.entities.User;
 
@@ -25,8 +25,8 @@ public interface IAssignExamToUserService {
 	
 			
 	 
-	 public AssignExamToUser assignExamToUser(int userId, int examId);
-	 public String editAssignExamToUser(AssignExamToUser editAssignExamToUser ,int examId);
-	 public Optional<AssignExamToUser> viewAssignExamById(int assignedId);
+	 public Admin assignExamToUser(int userId, int examId);
+	 public String editAssignExamToUser(Admin editAssignExamToUser ,int examId);
+	 public Optional<Admin> viewAssignExamById(int assignedId);
 	
 }

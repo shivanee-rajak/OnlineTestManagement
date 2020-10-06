@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.dxctraining.onlinetestmanagement.dao.IAssignExamToUserDao;
 import com.dxctraining.onlinetestmanagement.dao.IExamDao;
 import com.dxctraining.onlinetestmanagement.dao.IUserDao;
-import com.dxctraining.onlinetestmanagement.entities.AssignExamToUser;
+import com.dxctraining.onlinetestmanagement.entities.Admin;
 import com.dxctraining.onlinetestmanagement.entities.Exam;
 import com.dxctraining.onlinetestmanagement.entities.User;
 
@@ -90,7 +90,7 @@ public class AssignExamToUserServiceImp implements  IAssignExamToUserService{
 
 	
 	@Override
-	public AssignExamToUser assignExamToUser(int userId, int examId) {
+	public Admin assignExamToUser(int userId, int examId) {
 		
 		Optional<Exam> exam=examDaoI.findById(examId);
 		Optional<User> user = userDaoI.findById(userId);
@@ -103,7 +103,7 @@ public class AssignExamToUserServiceImp implements  IAssignExamToUserService{
 			User userObj = new User();
 			userObj.setUserId(userId);
 			
-			AssignExamToUser obj = new AssignExamToUser();
+			Admin obj = new Admin();
 			obj.setDateOfExam((LocalDate.now()));
 			obj.setStatus(true);
 			obj.setExam(examObj);
@@ -118,9 +118,9 @@ public class AssignExamToUserServiceImp implements  IAssignExamToUserService{
 
 	
 	@Override
-	public String editAssignExamToUser(AssignExamToUser assign,int examId) {
+	public String editAssignExamToUser(Admin assign,int examId) {
 		Optional<Exam>examObj = examDaoI.findById(examId);
-		Optional<AssignExamToUser> status = assignExamToUserDaoI.findById(assign.getAssignedId());
+		Optional<Admin> status = assignExamToUserDaoI.findById(assign.getAssignedId());
 		if(status != null && examObj!= null) {			
 			Exam obj = assign.getExam();
 			obj.setExamId(examId);
@@ -137,8 +137,8 @@ public class AssignExamToUserServiceImp implements  IAssignExamToUserService{
 	
 	
 	@Override
-	public Optional<AssignExamToUser> viewAssignExamById(int assignedId) {
-		Optional<AssignExamToUser> assignExamToUserObj = assignExamToUserDaoI.findById(assignedId);
+	public Optional<Admin> viewAssignExamById(int assignedId) {
+		Optional<Admin> assignExamToUserObj = assignExamToUserDaoI.findById(assignedId);
 		return assignExamToUserObj;
 	}
 	

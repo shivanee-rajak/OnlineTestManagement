@@ -1,0 +1,20 @@
+<div class="container">
+    <br><br><br><br><br><br><br><br>
+    <h2><p>View Assign Exam </p></h2>
+
+
+    <form #idform=ngForm (ngSubmit)=findAssignedExam(idform)>
+
+        <label>Assign Id</label>
+        <input type="number" name="id" ngModel>
+
+        <input type="submit" value="Search">
+    </form>
+    <br>
+
+    <div *ngIf="admin!==undefined">
+        User {{admin.user.userName}} has been assigned Exam {{admin.exam.examName}} 
+        with time duration {{admin.exam.minutes}} minutes.
+    </div>
+    <br>
+</div>

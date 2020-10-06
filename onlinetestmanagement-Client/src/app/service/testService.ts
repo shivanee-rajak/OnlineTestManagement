@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http'
 import { User } from '../model/user';
 import { from, observable, Observable } from 'rxjs';
 import { Exam } from '../model/exam';
+import { Admin } from '../model/Admin';
 
 
 @Injectable()
@@ -38,13 +39,30 @@ export class OnlineTestManagement{
         let observable:Observable<Exam>=this.http.get<Exam>(url);
         return observable;
        }
-
-       getAssignExam(userId:number,examId:number):Observable<User>{
-        let url=this.baseUrl+"/exam/addExam"+userId+"/"+examId;   
-        let observable:Observable<User,Exam>=this.http.post<User,Exam>(url);
+    
+       getAssignExam(userid:number,examid:number):Observable<Admin>{
+        let url=this.baseUrl+"/admin/assignExam/"+userid+"/"+examid;   
+        let observable:Observable<Admin>=this.http.post<Admin>(url," ");
+        return observable;
+       }
+       
+       editAssignExam(admin:Admin):Observable<Admin>{
+           //console.log(admin.exam.examId);
+        let url=this.baseUrl+"/admin/editAssignedExam/"+admin.exam.examId;   
+        let observable:Observable<Admin>=this.http.put<Admin>(url,admin);
         return observable;
        }
 
+       viewAssignExam(assignExamId:number):Observable<Admin>{
+        console.log(assignExamId+ " 3");
+        let url=this.baseUrl+"/admin/viewAssignedExamById/"+assignExamId;  
+        console.log(url); 
+        let observable:Observable<Admin>=this.http.get<Admin>(url,);
+        console.log(observable);
+        return observable;
+       }
+     
+    
 
       
      

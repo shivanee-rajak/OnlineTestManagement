@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Table(name = "assignexam")
 @Entity
-public class AssignExamToUser {
+public class Admin {
 	
 	@Id
 	@GeneratedValue
@@ -26,11 +26,11 @@ public class AssignExamToUser {
 	private Exam exam ;
 	
 	 
-     public AssignExamToUser(){
+     public Admin(){
 
 	    }
 		
-	public AssignExamToUser(int assignedId, int marks, boolean status, LocalDate dateOfExam, User user, Exam exam) {
+	public Admin(int assignedId, int marks, boolean status, LocalDate dateOfExam, User user, Exam exam) {
 		super();
 		this.assignedId = assignedId;
 		this.marks = marks;

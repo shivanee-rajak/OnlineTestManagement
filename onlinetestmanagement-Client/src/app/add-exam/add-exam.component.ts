@@ -37,11 +37,7 @@ export class AddExamComponent  {
   let observable: Observable<Exam> = this.onlinetest.addExam(this.exam);
   observable.subscribe(successFun, errFun);
 
-  
-
 }
-
-
    
    
 }

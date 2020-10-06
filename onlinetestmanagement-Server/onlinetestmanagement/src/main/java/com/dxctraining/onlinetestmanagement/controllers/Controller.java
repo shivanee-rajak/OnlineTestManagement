@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dxctraining.onlinetestmanagement.entities.AssignExamToUser;
+import com.dxctraining.onlinetestmanagement.entities.Admin;
 import com.dxctraining.onlinetestmanagement.entities.Exam;
 import com.dxctraining.onlinetestmanagement.entities.User;
 import com.dxctraining.onlinetestmanagement.exceptions.AssignExamNotFoundException;
@@ -50,7 +50,7 @@ public class Controller {
 	
 	
 	@GetMapping("/user/getUser/{userId}")
-	public ResponseEntity<User>getUserById(@PathVariable("userId") int userId) throws UserNotFoundExceptions{
+	public ResponseEntity<User> getUserById(@PathVariable("userId") int userId) throws UserNotFoundExceptions{
 		User status = service.getUserById(userId);
 		if(status!=null)
 		{
@@ -96,11 +96,11 @@ public class Controller {
 	
 	
 	@PostMapping("/admin/assignExam/{userId}/{examId}")
-	public ResponseEntity<String> assignExamToUser(@PathVariable("examId") int examId, @PathVariable("userId") int userId) throws AssignExamNotFoundException{
-		String status ="Success";
-		AssignExamToUser obj = service.assignExamToUser(userId,examId);
+	public ResponseEntity<Boolean> assignExamToUser(@PathVariable("examId") int examId, @PathVariable("userId") int userId) throws AssignExamNotFoundException{
+		//String status ="Success";
+		Admin obj = service.assignExamToUser(userId,examId);
 		if(obj != null) {
-			return new ResponseEntity<String>(status,HttpStatus.OK);
+			return new ResponseEntity<Boolean>(true,HttpStatus.OK);
 		}
 		else {
 			throw new AssignExamNotFoundException("Something Gone Wrong! Please check the "+userId+" and "+examId +" is exist or not before Assign the exam" );
@@ -111,7 +111,7 @@ public class Controller {
 	
 	
 	@PutMapping("/admin/editAssignedExam/{examId}")
-	public ResponseEntity<String> editAssignedExam(@RequestBody AssignExamToUser assign, @PathVariable("examId") int examId) throws AssignExamNotFoundException{
+	public ResponseEntity<String> editAssignedExam(@RequestBody Admin assign, @PathVariable("examId") int examId) throws AssignExamNotFoundException{
 		String str = "Successfully Edited";
 		String status = service.editAssignExamToUser(assign, examId);
 		if(status.contentEquals(str)) {
@@ -124,12 +124,12 @@ public class Controller {
 	
 	
 	@GetMapping("/admin/viewAssignedExamById/{assignedId}")
-	public ResponseEntity<AssignExamToUser> viewAssignedExamById(@PathVariable("assignedId") int assignedId) throws AssignExamNotFoundException{
-		Optional<AssignExamToUser>status =service.viewAssignExamById(assignedId);
+	public ResponseEntity<Admin> viewAssignedExamById(@PathVariable("assignedId") int assignedId) throws AssignExamNotFoundException{
+		Optional<Admin>status =service.viewAssignExamById(assignedId);
 		if(status.isPresent())
 		{
-			AssignExamToUser obj = status.get();
-			return new ResponseEntity<AssignExamToUser>(obj,HttpStatus.OK);
+			Admin obj = status.get();
+			return new ResponseEntity<Admin>(obj,HttpStatus.OK);
 		}
 		else
 		throw new AssignExamNotFoundException(assignedId+" is not found");

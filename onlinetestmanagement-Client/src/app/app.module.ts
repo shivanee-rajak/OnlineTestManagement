@@ -12,6 +12,8 @@ import { AssignExamToUserComponent } from './assign-exam-to-user/assign-exam-to-
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { OnlineTestManagement } from './service/testService';
+import { EditAssignExamComponent } from './edit-assign-exam/edit-assign-exam.component';
+import { ViewAssignExamComponent } from './view-assign-exam/view-assign-exam.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { OnlineTestManagement } from './service/testService';
     AddExamComponent,
     ExamDetailsComponent,
     AssignExamToUserComponent,
-    HomeComponent
+    HomeComponent,
+    EditAssignExamComponent,
+    ViewAssignExamComponent
   ],
   imports: [
     BrowserModule,

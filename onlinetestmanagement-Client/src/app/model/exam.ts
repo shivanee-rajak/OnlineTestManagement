@@ -1,13 +1,13 @@
 export class Exam{
   examId:number;
 	examName:string;
-  Time:number;
+  minutes:number;
     
 
-      constructor(examId:number,examName:string,Time:number){
+      constructor(examId:number,examName:string,minutes:number){
           this.examId=examId;
           this.examName=examName;
-          this.Time= Time;
+          this.minutes= minutes;
       }
   
       getName():string{
@@ -15,7 +15,7 @@ export class Exam{
         }
       
         getTime():number{
-          return this.Time;
+          return this.minutes;
         }
 
     
